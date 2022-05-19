@@ -1,0 +1,10 @@
+select c.CustomerId as id,
+	   sum(i.total) as total_spend,
+	   case when sum(i.total)<40 then 'low'
+	   when sum(i.total)<45 then 'median'
+	   else 'high' end as 'classification'
+from Customer as c
+join Invoice as i
+on c.CustomerId=i.CustomerId
+group by 1
+order by 2 desc	   

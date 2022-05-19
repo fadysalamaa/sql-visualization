@@ -1,0 +1,10 @@
+select c.City as city,
+	   sum(l.Quantity) total_qty
+from Customer as c
+join Invoice as i
+on c.CustomerId=i.CustomerId
+join InvoiceLine as l
+on i.InvoiceId=l.InvoiceId
+group by 1
+order by 2 desc 
+	   

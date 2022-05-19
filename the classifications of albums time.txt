@@ -1,0 +1,10 @@
+select a.title as Album,
+       avg(t.Milliseconds /36000) as avg_time_per_hour,
+	   case when avg(t.Milliseconds /36000)<5 then 'short'
+	   when avg(t.Milliseconds /36000)<10 then 'mediam'
+	   else 'long' end as track_classification
+from Album as a
+join Track as t
+on a.AlbumId=t.AlbumId
+group by 1
+order by 2 
